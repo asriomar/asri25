@@ -574,13 +574,14 @@ const App = () => {
                         </p>
                         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Computer Science</h3>
-                                <p className="text-stone-700 dark:text-stone-200">Universiti Sultan Zainal Abidin</p>
+                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Information Technology (Informatics Management)</h3>
+                                <p className="text-stone-700 dark:text-stone-200">Universiti Sultan Zainal Abidin </p>
+                                <p className="text-stone-700 dark:text-stone-200">Research Topic: Sentiment Analysis of User Feedback Using Lexical Based Approach </p>
                                 <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2019</p>
                             </div>
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology</h3>
-                                <p className="text-stone-700 dark:text-stone-200">University Malaysia Terengganu</p>
+                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology (Software Engineering)</h3>
+                                <p className="text-stone-700 dark:text-stone-200">University Malaysia Terengganu </p>
                                 <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2006</p>
                             </div>
                         </div>
