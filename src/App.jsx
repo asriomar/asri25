@@ -403,8 +403,8 @@ const App = () => {
                     max-height: 0;
                     overflow: hidden;
                     transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-                    padding-left: 1.5rem;
-                    padding-right: 1.5rem;
+                    padding-left: 0; /* Adjusted for better alignment with new dot positioning */
+                    padding-right: 0; /* Adjusted for better alignment with new dot positioning */
                     padding-top: 0;
                     padding-bottom: 0;
                 }
@@ -719,17 +719,17 @@ const App = () => {
                                 return (
                                     <div
                                         key={index}
-                                        className={`timeline-item relative mb-8 flex items-start ${activeTimelineItem === index ? 'active' : ''}`}
+                                        className={`timeline-item relative mb-8`}
                                     >
-                                        {/* Timeline Dot and small connecting line segment */}
-                                        <div className="absolute left-0 top-0 h-full flex flex-col items-center z-10 -translate-x-1/2">
+                                        {/* Timeline Dot positioned relative to the card, not the entire flex item's height */}
+                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
                                             <div className="timeline-dot h-4 w-4 rounded-full bg-orange-500 flex items-center justify-center ring-4 ring-white dark:ring-stone-900">
                                                 <div className="h-2 w-2 rounded-full bg-white transition-transform"></div>
                                             </div>
                                         </div>
 
-                                        {/* Content Block */}
-                                        <div className="ml-8 w-full"> {/* Content shifted by ml-8 to make space for the dot/line */}
+                                        {/* Content Block shifted right to make space for the line/dot */}
+                                        <div className="ml-12 w-full">
                                             <div
                                                 className={`cursor-pointer p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}
                                                 onClick={() => toggleTimelineItem(index)}
@@ -738,8 +738,8 @@ const App = () => {
                                                 <h3 className="font-bold text-lg text-orange-600 dark:text-orange-400">{item.role}</h3>
                                                 <p className="text-md text-stone-700 dark:text-stone-200 font-medium">{item.company}</p>
                                             </div>
-                                            <div className={`timeline-item-content rounded-b-lg shadow-md ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                                <ul className="list-disc list-inside text-stone-600 dark:text-stone-300 space-y-2 text-sm">
+                                            <div className={`timeline-item-content rounded-b-lg shadow-md ${isDarkMode ? 'bg-stone-800' : 'bg-white'} ${activeTimelineItem === index ? 'active' : ''}`}>
+                                                <ul className="list-disc list-inside text-stone-600 dark:text-stone-300 space-y-2 text-sm leading-relaxed">
                                                     {item.details.map((detail, detailIndex) => (
                                                         <li key={detailIndex}>{detail}</li>
                                                     ))}
