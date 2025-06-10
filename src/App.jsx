@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { Atom, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X } from 'lucide-react';
+import { Atom, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github } from 'lucide-react';
 
 const App = () => {
     const skillsData = {
@@ -99,6 +99,28 @@ const App = () => {
                 "Diagnosed and resolved PC-related issues across five HSBC Bank branches, improving system reliability and user satisfaction."
             ]
         }
+    ];
+
+    const projectData = [
+        {
+            title: "Interactive Resume (This App)",
+            description: "A dynamic and responsive single-page application built with React and Tailwind CSS, featuring an interactive skills dashboard and an expandable career timeline. Demonstrates strong front-end development skills and UI/UX design.",
+            vercelLink: "#", // Placeholder: Replace with actual Vercel link if deployed
+            githubLink: "https://github.com/mohd-asri-omar/interactive-resume" // Placeholder: Replace with actual GitHub link
+        },
+        {
+            title: "E-commerce Product Page",
+            description: "A responsive product page mock-up, showcasing dynamic content loading, image galleries, and user interaction elements. Built with React and modern CSS practices.",
+            vercelLink: "#", // Placeholder: Replace with actual Vercel link
+            githubLink: "https://github.com/mohd-asri-omar/ecommerce-product-page" // Placeholder: Replace with actual GitHub link
+        },
+        {
+            title: "Task Management App",
+            description: "A simple full-stack task management application with a React front-end and Node.js/Express.js backend. Features CRUD operations and basic user authentication.",
+            vercelLink: "#", // Placeholder: Replace with actual Vercel link
+            githubLink: "https://github.com/mohd-asri-omar/task-manager-app" // Placeholder: Replace with actual GitHub link
+        }
+        // Add more projects here
     ];
 
     const chartRef = useRef(null);
@@ -250,6 +272,7 @@ const App = () => {
                     <div className="hidden md:flex space-x-8 items-center">
                         <a href="#summary" className="text-stone-600 hover:text-orange-600 transition-colors">Summary</a>
                         <a href="#skills" className="text-stone-600 hover:text-orange-600 transition-colors">Skills</a>
+                        <a href="#projects" className="text-stone-600 hover:text-orange-600 transition-colors">Projects</a> {/* New Nav Link */}
                         <a href="#career" className="text-stone-600 hover:text-orange-600 transition-colors">Career</a>
                         <a href="#education" className="text-stone-600 hover:text-orange-600 transition-colors">Education</a>
                         <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Contact Me</a>
@@ -268,6 +291,7 @@ const App = () => {
                     <div className="flex flex-col items-center py-8 space-y-6">
                         <a href="#summary" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors">Summary</a>
                         <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors">Skills</a>
+                        <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors">Projects</a> {/* New Mobile Nav Link */}
                         <a href="#career" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors">Career</a>
                         <a href="#education" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors">Education</a>
                         <a href="mailto:mohdasriomar84@gmail.com" onClick={() => setIsMenuOpen(false)} className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Contact Me</a>
@@ -357,6 +381,36 @@ const App = () => {
                                     ))}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* New Projects Section */}
+                <section id="projects" className="mb-16 md:mb-24">
+                    <div className="max-w-7xl mx-auto">
+                        <h2 className="text-3xl font-bold text-center text-stone-900 mb-4">My Projects</h2>
+                        <p className="text-lg text-stone-600 text-center max-w-2xl mx-auto mb-10">
+                            Here are some of the projects I've worked on, demonstrating my skills in front-end development and full-stack application building. Feel free to explore the live demos and source code.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {projectData.map((project, index) => (
+                                <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
+                                    <h3 className="text-xl font-bold text-orange-600 mb-2">{project.title}</h3>
+                                    <p className="text-stone-700 text-sm flex-grow mb-4">{project.description}</p>
+                                    <div className="flex justify-start space-x-4 mt-auto">
+                                        {project.vercelLink && (
+                                            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium">
+                                                <ExternalLink size={18} className="mr-1" /> Live Demo
+                                            </a>
+                                        )}
+                                        {project.githubLink && (
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium">
+                                                <Github size={18} className="mr-1" /> GitHub
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
