@@ -54,19 +54,19 @@ const App = () => {
             { name: "Node.js", icon: <Server size={40} /> },
             { name: "Express.js", icon: <Rocket size={40} /> },
             { name: "PostgreSQL", icon: <Database size={40} /> },
-          { name: "MongoDB", icon: <Database size={40} /> },
-          { name: "SQL", icon: <Database size={40} /> },
+            { name: "MongoDB", icon: <Database size={40} /> },
+            { name: "SQL", icon: <Database size={40} /> },
         ],
         scripting: [
             { name: "JavaScript", icon: <Code size={40} /> },
             { name: "Python", icon: <Code size={40} /> },
-           
+
         ],
         emerging: [
             { name: "Generative AI", icon: <Sparkles size={40} /> },
             { name: "LLM", icon: <Bot size={40} /> },
             { name: "Sentiment Analysis", icon: <Smile size={40} /> },
-             { name: "LM Studio", icon: <Smile size={40} /> },
+            { name: "LM Studio", icon: <Smile size={40} /> },
             { name: "Vibe Coding", icon: <Wind size={40} /> },
             { name: "Prompt Engineering", icon: <Brain size={40} /> },
         ],
@@ -178,6 +178,15 @@ const App = () => {
         }
         const ctx = chartRef.current.getContext('2d');
 
+        // Dynamically calculate chart data from skillsData
+        const chartDataCounts = [
+            skillsData.frontend.length,
+            skillsData.backend.length,
+            skillsData.scripting.length,
+            skillsData.emerging.length,
+            skillsData.soft.length
+        ];
+
         const commonChartOptions = {
             responsive: true,
             maintainAspectRatio: false,
@@ -242,7 +251,8 @@ const App = () => {
                 labels: ['Front-End', 'Back-End', 'Programming', 'Emerging Tech', 'Soft Skills'],
                 datasets: [{
                     label: 'Skill Distribution',
-                    data: [7, 4, 3, 3, 5],
+                    // Use the dynamically calculated data here
+                    data: chartDataCounts,
                     backgroundColor: [
                         'rgba(249, 115, 22, 0.6)',
                         'rgba(55, 65, 81, 0.6)',
@@ -262,7 +272,7 @@ const App = () => {
             },
             options: commonChartOptions
         });
-    }, [isDarkMode]); // Re-run effect when isDarkMode changes
+    }, [isDarkMode, skillsData]); // Re-run effect when isDarkMode or skillsData changes
 
     const getSkillsToShow = () => {
         return activeCategory === 'all'
@@ -279,7 +289,7 @@ const App = () => {
     };
 
     return (
-        <div className={`${isDarkMode ? 'bg-stone-900 text-stone-200' : 'bg-stone-50 text-stone-800'} antialiased`}>
+        <div className={`${isDarkMode ? 'bg-stone-900 text-stone-100' : 'bg-stone-50 text-stone-800'} antialiased`}>
             <style>
                 {`
                 .timeline-item-content {
@@ -326,7 +336,7 @@ const App = () => {
             </style>
             <header id="header" className={`${isDarkMode ? 'bg-stone-900/80' : 'bg-stone-50/80'} backdrop-blur-sm sticky top-0 z-50 shadow-sm`}>
                 <nav className="px-6 py-4 flex justify-between items-center w-full">
-                    <div className="text-xl font-bold text-orange-600 ">
+                    <div className="text-xl font-bold text-orange-600">
                         Mohd Asri Omar
                     </div>
                     {/* Desktop Navigation */}
@@ -356,11 +366,11 @@ const App = () => {
                 {/* Mobile Menu Overlay */}
                 <div className={`md:hidden absolute top-0 left-0 w-full ${isDarkMode ? 'bg-stone-900/95' : 'bg-stone-50/95'} backdrop-blur-md z-40 transform ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'} transition-transform duration-300 ease-in-out`}>
                     <div className="flex flex-col items-center py-8 space-y-6">
-                        <a href="#summary" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Summary</a>
-                        <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Skills</a>
-                        <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Projects</a>
-                        <a href="#career" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Career</a>
-                        <a href="#education" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Education</a>
+                        <a href="#summary" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Summary</a>
+                        <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Skills</a>
+                        <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Projects</a>
+                        <a href="#career" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Career</a>
+                        <a href="#education" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Education</a>
                         <a href="mailto:mohdasriomar84@gmail.com" onClick={() => setIsMenuOpen(false)} className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Contact Me</a>
                     </div>
                 </div>
@@ -443,7 +453,7 @@ const App = () => {
                                             <div className="mb-2 text-orange-600 dark:text-orange-400">
                                                 {skill.icon}
                                             </div>
-                                            <span className="text-sm font-medium text-stone-700 dark:text-stone-200">{skill.name}</span>
+                                            <span className="text-sm font-medium text-stone-700 dark:text-stone-300">{skill.name}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -554,7 +564,7 @@ const App = () => {
                     <h3 className="text-2xl font-bold mb-2">Let's Connect</h3>
                     <p className="mb-4">Feel free to reach out for opportunities or just to say hello.</p>
                     <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-block">mohdasriomar84@gmail.com</a>
-                    <p className="mt-6 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
+                    <p className="mt-6 text-sm text-stone-400">&copy; 2024 Mohd Asri Omar. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
