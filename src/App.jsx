@@ -45,6 +45,8 @@ const App = () => {
             { name: "HTML5", icon: <FileText size={40} /> },
             { name: "CSS3", icon: <Palette size={40} /> },
             { name: "Tailwind CSS", icon: <Wind size={40} /> },
+            { name: "Bootstrap", icon: <Wind size={40} /> },
+            { name: "Chakra UI", icon: <Wind size={40} /> },
             { name: "UI/UX Design", icon: <Layout size={40} /> },
             { name: "Responsive Design", icon: <Smartphone size={40} /> },
         ],
@@ -65,6 +67,7 @@ const App = () => {
             { name: "LLM", icon: <Bot size={40} /> },
             { name: "Sentiment Analysis", icon: <Smile size={40} /> },
              { name: "LM Studio", icon: <Smile size={40} /> },
+            { name: "Vibe Coding", icon: <Wind size={40} /> },
         ],
         soft: [
             { name: "Leadership", icon: <Users size={40} /> },
