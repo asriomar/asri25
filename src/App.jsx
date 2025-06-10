@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Chart from 'chart.js/auto';
-import { Atom, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github, Sun, Moon } from 'lucide-react';
+import { Atom, Brain, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github, Sun, Moon } from 'lucide-react';
 
 // 1. Create Theme Context
 const ThemeContext = createContext();
@@ -68,7 +68,7 @@ const App = () => {
             { name: "Sentiment Analysis", icon: <Smile size={40} /> },
              { name: "LM Studio", icon: <Smile size={40} /> },
             { name: "Vibe Coding", icon: <Wind size={40} /> },
-            { name: "Prompt Engineering", icon: <Wind size={40} /> },
+            { name: "Prompt Engineering", icon: <Brain size={40} /> },
         ],
         soft: [
             { name: "Leadership", icon: <Users size={40} /> },
