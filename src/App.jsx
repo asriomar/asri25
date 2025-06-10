@@ -53,11 +53,12 @@ const App = () => {
             { name: "Express.js", icon: <Rocket size={40} /> },
             { name: "PostgreSQL", icon: <Database size={40} /> },
             { name: "MongoDB", icon: <Database size={40} /> },
+            { name: "SQL", icon: <Database size={40} /> },
         ],
         scripting: [
             { name: "JavaScript", icon: <Code size={40} /> },
             { name: "Python", icon: <Code size={40} /> },
-            { name: "SQL", icon: <Database size={40} /> },
+            
         ],
         emerging: [
             { name: "Generative AI", icon: <Sparkles size={40} /> },
@@ -318,7 +319,7 @@ const App = () => {
             </style>
             <header id="header" className={`${isDarkMode ? 'bg-stone-900/80' : 'bg-stone-50/80'} backdrop-blur-sm sticky top-0 z-50 shadow-sm`}>
                 <nav className="px-6 py-4 flex justify-between items-center w-full">
-                    <div className="text-xl font-bold text-stone-900 dark:text-stone-50">
+                    <div className="text-xl font-bold text-orange-600">
                         Mohd Asri Omar
                     </div>
                     {/* Desktop Navigation */}
@@ -546,7 +547,7 @@ const App = () => {
                     <h3 className="text-2xl font-bold mb-2">Let's Connect</h3>
                     <p className="mb-4">Feel free to reach out for opportunities or just to say hello.</p>
                     <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-block">mohdasriomar84@gmail.com</a>
-                    <p className="mt-6 text-sm text-stone-400">&copy; 2024 Mohd Asri Omar. All Rights Reserved.</p>
+                    <p className="mt-6 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
