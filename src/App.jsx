@@ -317,7 +317,7 @@ const App = () => {
                         </p>
                         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center w-full">
                             <div className="lg:col-span-2">
-                                <div className="chart-container">
+                                <div className="chart-container bg-white p-4 rounded-lg shadow-md">
                                     <canvas ref={chartRef} id="skillsChart"></canvas>
                                 </div>
                             </div>
@@ -326,42 +326,42 @@ const App = () => {
                                     <button
                                         data-category="all"
                                         onClick={() => handleSkillButtonClick('all')}
-                                        className={`skill-btn py-2 px-4 rounded-lg shadow font-medium transition-colors ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-white hover:bg-stone-100 text-stone-700'}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'all' ? 'bg-orange-500 text-white' : 'bg-transparent border border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}
                                     >
                                         All Skills
                                     </button>
                                     <button
                                         data-category="frontend"
                                         onClick={() => handleSkillButtonClick('frontend')}
-                                        className={`skill-btn py-2 px-4 rounded-lg shadow font-medium transition-colors ${activeCategory === 'frontend' ? 'bg-orange-500 text-white' : 'bg-white hover:bg-stone-100 text-stone-700'}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'frontend' ? 'bg-orange-500 text-white' : 'bg-transparent border border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}
                                     >
                                         Front-End
                                     </button>
                                     <button
                                         data-category="backend"
                                         onClick={() => handleSkillButtonClick('backend')}
-                                        className={`skill-btn py-2 px-4 rounded-lg shadow font-medium transition-colors ${activeCategory === 'backend' ? 'bg-orange-500 text-white' : 'bg-white hover:bg-stone-100 text-stone-700'}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'backend' ? 'bg-orange-500 text-white' : 'bg-transparent border border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}
                                     >
                                         Back-End
                                     </button>
                                     <button
                                         data-category="scripting"
                                         onClick={() => handleSkillButtonClick('scripting')}
-                                        className={`skill-btn py-2 px-4 rounded-lg shadow font-medium transition-colors ${activeCategory === 'scripting' ? 'bg-orange-500 text-white' : 'bg-white hover:bg-stone-100 text-stone-700'}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'scripting' ? 'bg-orange-500 text-white' : 'bg-transparent border border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}
                                     >
                                         Programming
                                     </button>
                                     <button
                                         data-category="emerging"
                                         onClick={() => handleSkillButtonClick('emerging')}
-                                        className={`skill-btn py-2 px-4 rounded-lg shadow font-medium transition-colors ${activeCategory === 'emerging' ? 'bg-orange-500 text-white' : 'bg-white hover:bg-stone-100 text-stone-700'}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'emerging' ? 'bg-orange-500 text-white' : 'bg-transparent border border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}
                                     >
                                         Emerging Tech
                                     </button>
                                     <button
                                         data-category="soft"
                                         onClick={() => handleSkillButtonClick('soft')}
-                                        className={`skill-btn py-2 px-4 rounded-lg shadow font-medium transition-colors ${activeCategory === 'soft' ? 'bg-orange-500 text-white' : 'bg-white hover:bg-stone-100 text-stone-700'}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'soft' ? 'bg-orange-500 text-white' : 'bg-transparent border border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}
                                     >
                                         Soft Skills
                                     </button>
@@ -370,7 +370,7 @@ const App = () => {
                                     {getSkillsToShow().map((skill, index) => (
                                         <div
                                             key={index}
-                                            className="skill-card bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center text-center visible"
+                                            className="skill-card bg-white p-4 rounded-lg shadow flex flex-col items-center justify-center text-center visible transform hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out border border-transparent hover:border-orange-200"
                                             style={{ transitionDelay: `${index * 50}ms` }}
                                         >
                                             <div className="mb-2 text-orange-600">
