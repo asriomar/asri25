@@ -10,6 +10,8 @@ const App = () => {
             { name: "HTML5", icon: <FileText size={40} /> },
             { name: "CSS3", icon: <Palette size={40} /> },
             { name: "Tailwind CSS", icon: <Wind size={40} /> },
+            { name: "Bootstrap", icon: <Wind size={40} /> },
+             { name: "Chakra UI", icon: <Wind size={40} /> },
             { name: "UI/UX Design", icon: <Layout size={40} /> },
             { name: "Responsive Design", icon: <Smartphone size={40} /> },
         ],
