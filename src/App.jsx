@@ -524,16 +524,25 @@ const App = () => {
                         <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-12">
                             My professional experience has provided me with a strong foundation in system operations, user support, and the software development lifecycle. The following interactive timeline outlines my career progression. Click on any role to see the detailed responsibilities and achievements.
                         </p>
-                        <div id="timeline-container" className="relative w-full">
-                            <div className="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-stone-300 dark:bg-stone-700"></div>
+                        <div id="timeline-container" className="relative w-full pl-8"> {/* Added pl-8 for overall content offset */}
+                            {/* Main vertical line for the timeline */}
+                            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-stone-300 dark:bg-stone-700"></div>
+
                             {timelineData.map((item, index) => {
-                                const isLeft = index % 2 === 0;
                                 return (
                                     <div
                                         key={index}
-                                        className={`timeline-item relative mb-8 flex items-center ${isLeft ? 'flex-row-reverse' : ''} ${activeTimelineItem === index ? 'active' : ''}`}
+                                        className={`timeline-item relative mb-8 flex items-start ${activeTimelineItem === index ? 'active' : ''}`}
                                     >
-                                        <div className="w-1/2 px-4">
+                                        {/* Timeline Dot and small connecting line segment */}
+                                        <div className="absolute left-0 top-0 h-full flex flex-col items-center z-10 -translate-x-1/2">
+                                            <div className="timeline-dot h-4 w-4 rounded-full bg-orange-500 flex items-center justify-center ring-4 ring-white dark:ring-stone-900">
+                                                <div className="h-2 w-2 rounded-full bg-white transition-transform"></div>
+                                            </div>
+                                        </div>
+
+                                        {/* Content Block */}
+                                        <div className="ml-8 w-full"> {/* Content shifted by ml-8 to make space for the dot/line */}
                                             <div
                                                 className={`cursor-pointer p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}
                                                 onClick={() => toggleTimelineItem(index)}
@@ -550,12 +559,6 @@ const App = () => {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className="w-8 flex-shrink-0 flex justify-center">
-                                            <div className="timeline-dot h-4 w-4 rounded-full bg-orange-500 flex items-center justify-center ring-4 ring-white dark:ring-stone-900">
-                                                <div className="h-2 w-2 rounded-full bg-white transition-transform"></div>
-                                            </div>
-                                        </div>
-                                        <div className="w-1/2 px-4"></div>
                                     </div>
                                 );
                             })}
@@ -571,12 +574,12 @@ const App = () => {
                         </p>
                         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Information Technology (Informatics Management)</h3>
+                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Computer Science</h3>
                                 <p className="text-stone-700 dark:text-stone-200">Universiti Sultan Zainal Abidin</p>
                                 <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2019</p>
                             </div>
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology (Software Engineering)</h3>
+                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology</h3>
                                 <p className="text-stone-700 dark:text-stone-200">University Malaysia Terengganu</p>
                                 <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2006</p>
                             </div>
