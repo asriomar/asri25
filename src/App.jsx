@@ -52,13 +52,13 @@ const App = () => {
             { name: "Node.js", icon: <Server size={40} /> },
             { name: "Express.js", icon: <Rocket size={40} /> },
             { name: "PostgreSQL", icon: <Database size={40} /> },
-            { name: "MongoDB", icon: <Database size={40} /> },
-            { name: "SQL", icon: <Database size={40} /> },
+          { name: "MongoDB", icon: <Database size={40} /> },
+          { name: "SQL", icon: <Database size={40} /> },
         ],
         scripting: [
             { name: "JavaScript", icon: <Code size={40} /> },
             { name: "Python", icon: <Code size={40} /> },
-            
+           
         ],
         emerging: [
             { name: "Generative AI", icon: <Sparkles size={40} /> },
@@ -272,7 +272,7 @@ const App = () => {
     };
 
     return (
-        <div className={`${isDarkMode ? 'bg-stone-900 text-stone-100' : 'bg-stone-50 text-stone-800'} antialiased`}>
+        <div className={`${isDarkMode ? 'bg-stone-900 text-stone-200' : 'bg-stone-50 text-stone-800'} antialiased`}>
             <style>
                 {`
                 .timeline-item-content {
@@ -319,16 +319,16 @@ const App = () => {
             </style>
             <header id="header" className={`${isDarkMode ? 'bg-stone-900/80' : 'bg-stone-50/80'} backdrop-blur-sm sticky top-0 z-50 shadow-sm`}>
                 <nav className="px-6 py-4 flex justify-between items-center w-full">
-                    <div className="text-xl font-bold text-orange-600">
+                    <div className="text-xl font-bold text-orange-600 ">
                         Mohd Asri Omar
                     </div>
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-8 items-center">
-                        <a href="#summary" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Summary</a>
-                        <a href="#skills" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Skills</a>
-                        <a href="#projects" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Projects</a>
-                        <a href="#career" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Career</a>
-                        <a href="#education" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Education</a>
+                        <a href="#summary" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Summary</a>
+                        <a href="#skills" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Skills</a>
+                        <a href="#projects" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Projects</a>
+                        <a href="#career" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Career</a>
+                        <a href="#education" className="text-stone-600 hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Education</a>
                         <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Contact Me</a>
                         <button onClick={toggleTheme} className="p-2 rounded-full text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors">
                             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -349,11 +349,11 @@ const App = () => {
                 {/* Mobile Menu Overlay */}
                 <div className={`md:hidden absolute top-0 left-0 w-full ${isDarkMode ? 'bg-stone-900/95' : 'bg-stone-50/95'} backdrop-blur-md z-40 transform ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'} transition-transform duration-300 ease-in-out`}>
                     <div className="flex flex-col items-center py-8 space-y-6">
-                        <a href="#summary" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Summary</a>
-                        <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Skills</a>
-                        <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Projects</a>
-                        <a href="#career" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Career</a>
-                        <a href="#education" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-100 dark:hover:text-orange-400">Education</a>
+                        <a href="#summary" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Summary</a>
+                        <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Skills</a>
+                        <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Projects</a>
+                        <a href="#career" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Career</a>
+                        <a href="#education" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-200 dark:hover:text-orange-400">Education</a>
                         <a href="mailto:mohdasriomar84@gmail.com" onClick={() => setIsMenuOpen(false)} className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Contact Me</a>
                     </div>
                 </div>
@@ -362,8 +362,8 @@ const App = () => {
             <main className="px-6 py-8 md:py-16 w-full">
                 <section id="summary" className="mb-16 md:mb-24 text-center">
                     <div className="max-w-7xl mx-auto">
-                        <h1 className="text-4xl md:text-5xl font-bold text-stone-900 dark:text-stone-50 mb-4">Aspiring Front-End Developer</h1>
-                        <p className="text-lg md:text-xl text-stone-600 dark:text-stone-100 max-w-3xl mx-auto">
+                        <h1 className="text-4xl md:text-5xl font-bold text-orange-600 mb-4">Aspiring Front-End Developer</h1>
+                        <p className="text-lg md:text-xl text-stone-600 dark:text-stone-300 max-w-3xl mx-auto">
                             Highly motivated IT professional with a robust foundation in software development and system operations, actively transitioning into a dedicated Front-End Developer role. Passionate about crafting intuitive, responsive, and visually appealing user interfaces.
                         </p>
                     </div>
@@ -371,8 +371,8 @@ const App = () => {
 
                 <section id="skills" className="mb-16 md:mb-24">
                     <div className="max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-bold text-center text-stone-900 dark:text-stone-50 mb-4">Skills Dashboard</h2>
-                        <p className="text-lg text-stone-600 dark:text-stone-100 text-center max-w-2xl mx-auto mb-10">
+                        <h2 className="text-3xl font-bold text-center text-orange-600 mb-4">Skills Dashboard</h2>
+                        <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-10">
                             This section provides an interactive overview of my technical abilities. The chart visualizes the distribution of my skills across key development areas. Click the buttons below to filter and explore specific technologies and competencies within each category.
                         </p>
                         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center w-full">
@@ -386,42 +386,42 @@ const App = () => {
                                     <button
                                         data-category="all"
                                         onClick={() => handleSkillButtonClick('all')}
-                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'all' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-100 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'all' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-300 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
                                     >
                                         All Skills
                                     </button>
                                     <button
                                         data-category="frontend"
                                         onClick={() => handleSkillButtonClick('frontend')}
-                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'frontend' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-100 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'frontend' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-300 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
                                     >
                                         Front-End
                                     </button>
                                     <button
                                         data-category="backend"
                                         onClick={() => handleSkillButtonClick('backend')}
-                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'backend' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-100 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'backend' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-300 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
                                     >
                                         Back-End
                                     </button>
                                     <button
                                         data-category="scripting"
                                         onClick={() => handleSkillButtonClick('scripting')}
-                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'scripting' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-100 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'scripting' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-300 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
                                     >
                                         Programming
                                     </button>
                                     <button
                                         data-category="emerging"
                                         onClick={() => handleSkillButtonClick('emerging')}
-                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'emerging' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-100 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'emerging' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-300 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
                                     >
                                         Emerging Tech
                                     </button>
                                     <button
                                         data-category="soft"
                                         onClick={() => handleSkillButtonClick('soft')}
-                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'soft' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-100 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
+                                        className={`skill-btn py-3 px-6 rounded-lg shadow font-semibold transition-colors ${activeCategory === 'soft' ? 'bg-orange-500 text-white' : `bg-transparent border ${isDarkMode ? 'border-stone-700 text-stone-300 hover:bg-stone-700 hover:border-orange-700' : 'border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-orange-500'}`}`}
                                     >
                                         Soft Skills
                                     </button>
@@ -430,13 +430,13 @@ const App = () => {
                                     {getSkillsToShow().map((skill, index) => (
                                         <div
                                             key={index}
-                                            className={`skill-card p-4 rounded-lg shadow flex flex-col items-center justify-center text-center visible transform hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out border border-transparent ${isDarkMode ? 'bg-stone-800 text-stone-100 hover:border-orange-700' : 'bg-white text-stone-700 hover:border-orange-200'}`}
+                                            className={`skill-card p-4 rounded-lg shadow flex flex-col items-center justify-center text-center visible transform hover:shadow-xl hover:scale-[1.02] transition-all duration-300 ease-in-out border border-transparent ${isDarkMode ? 'bg-stone-800 text-stone-200 hover:border-orange-700' : 'bg-white text-stone-700 hover:border-orange-200'}`}
                                             style={{ transitionDelay: `${index * 50}ms` }}
                                         >
                                             <div className="mb-2 text-orange-600 dark:text-orange-400">
                                                 {skill.icon}
                                             </div>
-                                            <span className="text-sm font-medium text-stone-700 dark:text-stone-100">{skill.name}</span>
+                                            <span className="text-sm font-medium text-stone-700 dark:text-stone-200">{skill.name}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -448,23 +448,23 @@ const App = () => {
                 {/* Projects Section */}
                 <section id="projects" className="mb-16 md:mb-24">
                     <div className="max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-bold text-center text-stone-900 dark:text-stone-50 mb-4">My Projects</h2>
-                        <p className="text-lg text-stone-600 dark:text-stone-100 text-center max-w-2xl mx-auto mb-10">
+                        <h2 className="text-3xl font-bold text-center text-orange-600 mb-4">My Projects</h2>
+                        <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-10">
                             Here are some of the projects I've worked on, demonstrating my skills in front-end development and full-stack application building. Feel free to explore the live demos and source code.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {projectData.map((project, index) => (
                                 <div key={index} className={`p-6 rounded-lg shadow-md flex flex-col ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
                                     <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-2">{project.title}</h3>
-                                    <p className="text-stone-700 dark:text-stone-100 text-sm flex-grow mb-4">{project.description}</p>
+                                    <p className="text-stone-700 dark:text-stone-300 text-sm flex-grow mb-4">{project.description}</p>
                                     <div className="flex justify-start space-x-4 mt-auto">
                                         {project.vercelLink && (
-                                            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-300 dark:hover:text-orange-400">
+                                            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
                                                 <ExternalLink size={18} className="mr-1" /> Live Demo
                                             </a>
                                         )}
                                         {project.githubLink && (
-                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-300 dark:hover:text-orange-400">
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
                                                 <Github size={18} className="mr-1" /> GitHub
                                             </a>
                                         )}
@@ -477,8 +477,8 @@ const App = () => {
 
                 <section id="career" className="mb-16 md:mb-24">
                     <div className="max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-bold text-center text-stone-900 dark:text-stone-50 mb-4">Career Journey</h2>
-                        <p className="text-lg text-stone-600 dark:text-stone-100 text-center max-w-2xl mx-auto mb-12">
+                        <h2 className="text-3xl font-bold text-center text-orange-600 mb-4">Career Journey</h2>
+                        <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-12">
                             My professional experience has provided me with a strong foundation in system operations, user support, and the software development lifecycle. The following interactive timeline outlines my career progression. Click on any role to see the detailed responsibilities and achievements.
                         </p>
                         <div id="timeline-container" className="relative w-full">
@@ -495,12 +495,12 @@ const App = () => {
                                                 className={`cursor-pointer p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}
                                                 onClick={() => toggleTimelineItem(index)}
                                             >
-                                                <p className="text-xs text-stone-500 dark:text-stone-300">{item.date}</p>
+                                                <p className="text-xs text-stone-500 dark:text-stone-400">{item.date}</p>
                                                 <h3 className="font-bold text-lg text-orange-600 dark:text-orange-400">{item.role}</h3>
-                                                <p className="text-md text-stone-700 dark:text-stone-100 font-medium">{item.company}</p>
+                                                <p className="text-md text-stone-700 dark:text-stone-200 font-medium">{item.company}</p>
                                             </div>
                                             <div className={`timeline-item-content rounded-b-lg shadow-md ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                                <ul className="list-disc list-inside text-stone-600 dark:text-stone-100 space-y-2 text-sm">
+                                                <ul className="list-disc list-inside text-stone-600 dark:text-stone-300 space-y-2 text-sm">
                                                     {item.details.map((detail, detailIndex) => (
                                                         <li key={detailIndex}>{detail}</li>
                                                     ))}
@@ -522,20 +522,20 @@ const App = () => {
 
                 <section id="education" className="text-center">
                     <div className="max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-bold text-stone-900 dark:text-stone-50 mb-6">Education</h2>
-                        <p className="text-lg text-stone-600 dark:text-stone-100 text-center max-w-2xl mx-auto mb-8">
+                        <h2 className="text-3xl font-bold text-orange-600 mb-6">Education</h2>
+                        <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-8">
                             My academic background in Information Technology has provided the theoretical knowledge and foundational principles that underpin my practical skills in software development and computer science.
                         </p>
                         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
                                 <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Computer Science</h3>
-                                <p className="text-stone-700 dark:text-stone-100">Universiti Sultan Zainal Abidin</p>
-                                <p className="text-stone-500 dark:text-stone-300 text-sm">Graduated 2019</p>
+                                <p className="text-stone-700 dark:text-stone-200">Universiti Sultan Zainal Abidin</p>
+                                <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2019</p>
                             </div>
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
                                 <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology</h3>
-                                <p className="text-stone-700 dark:text-stone-100">University Malaysia Terengganu</p>
-                                <p className="text-stone-500 dark:text-stone-300 text-sm">Graduated 2006</p>
+                                <p className="text-stone-700 dark:text-stone-200">University Malaysia Terengganu</p>
+                                <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2006</p>
                             </div>
                         </div>
                     </div>
