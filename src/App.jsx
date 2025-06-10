@@ -474,8 +474,8 @@ const App = () => {
                                 <p className="text-stone-500 text-sm">Graduated 2019</p>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-md w-full md:w-auto text-center">
-                                <h3 className="text-xl font-bold text-orange-600">Bachelor of Information Technology</h3>
-                                <p className="text-stone-700">University Malaysia Terengganu (Software Engineering)</p>
+                                <h3 className="text-xl font-bold text-orange-600">Bachelor of Information Technology (Software Engineering)</h3>
+                                <p className="text-stone-700">University Malaysia Terengganu </p>
                                 <p className="text-stone-500 text-sm">Graduated 2006</p>
                             </div>
                         </div>
