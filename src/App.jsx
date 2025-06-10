@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Chart from 'chart.js/auto';
-import { Atom, Brain, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github, Sun, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Atom, Brain, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github, Sun, Moon } from 'lucide-react';
 
 // 1. Create Theme Context
 const ThemeContext = createContext();
@@ -172,19 +172,9 @@ const App = () => {
     const [activeTimelineItem, setActiveTimelineItem] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
 
-    // Carousel state
-    const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-    const totalProjects = projectData.length;
-
-    // Refs for carousel and menu
-    const carouselContainerRef = useRef(null);
-    const carouselTrackRef = useRef(null);
+    // Refs for detecting clicks outside the menu
     const menuRef = useRef();
     const menuButtonRef = useRef();
-
-    // State for translateX value for carousel
-    const [translateXValue, setTranslateXValue] = useState(0);
-    const [isDesktopView, setIsDesktopView] = useState(false); // New state to track desktop view
 
     useEffect(() => {
         if (chartInstance.current) {
@@ -310,68 +300,6 @@ const App = () => {
         };
     }, [isMenuOpen]); // Re-run effect if isMenuOpen changes
 
-    // Auto-play for carousel
-    useEffect(() => {
-        if (totalProjects <= 1 || !isDesktopView) return; // No need to auto-play if only one project or not desktop
-
-        const interval = setInterval(() => {
-            setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
-        }, 3000); // Change slide every 3 seconds
-
-        return () => clearInterval(interval); // Cleanup on component unmount or re-render
-    }, [totalProjects, currentProjectIndex, isDesktopView]); // Added isDesktopView to deps
-
-    // Effect to update translateX for carousel positioning and desktop view detection
-    useEffect(() => {
-        const handleResize = () => {
-            setIsDesktopView(window.innerWidth >= 768);
-        };
-
-        // Initial check
-        handleResize();
-        // Update on window resize
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []); // Empty dependency array means this runs once on mount and cleanup on unmount
-
-
-    // Effect to update translateX for carousel positioning
-    useEffect(() => {
-        const updateCarouselPosition = () => {
-            if (carouselContainerRef.current && carouselTrackRef.current && isDesktopView) {
-                const containerWidth = carouselContainerRef.current.offsetWidth;
-                const firstItem = carouselTrackRef.current.children[0];
-                const itemWidth = firstItem ? firstItem.offsetWidth : (containerWidth / 3); // Fallback if no item
-
-                let newTranslateX = (containerWidth / 2) - (currentProjectIndex * itemWidth + itemWidth / 2);
-
-                const maxTranslateX = (containerWidth / 2) - (0 * itemWidth + itemWidth / 2);
-                const minTranslateX = (containerWidth / 2) - ((totalProjects - 1) * itemWidth + itemWidth / 2);
-
-                if (newTranslateX > maxTranslateX) {
-                    newTranslateX = maxTranslateX;
-                }
-                if (newTranslateX < minTranslateX) {
-                    newTranslateX = minTranslateX;
-                }
-                setTranslateXValue(newTranslateX);
-            } else if (!isDesktopView) {
-                // Reset translateX for non-desktop views
-                setTranslateXValue(0);
-            }
-        };
-
-        updateCarouselPosition(); // Initial position update
-        window.addEventListener('resize', updateCarouselPosition); // Update on window resize
-
-        return () => {
-            window.removeEventListener('resize', updateCarouselPosition);
-        };
-    }, [currentProjectIndex, totalProjects, isDesktopView]); // Re-run when currentProjectIndex, totalProjects, or isDesktopView changes
-
     const getSkillsToShow = () => {
         return activeCategory === 'all'
             ? Object.values(skillsData).flat()
@@ -386,15 +314,6 @@ const App = () => {
         setActiveTimelineItem(activeTimelineItem === index ? null : index);
     };
 
-    // Carousel navigation functions
-    const goToNextProject = () => {
-        setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
-    };
-
-    const goToPrevProject = () => {
-        setCurrentProjectIndex((prevIndex) => (prevIndex - 1 + totalProjects) % totalProjects);
-    };
-
     return (
         <div className={`${isDarkMode ? 'bg-stone-900 text-stone-100' : 'bg-stone-50 text-stone-800'} antialiased`}>
             <style>
@@ -403,8 +322,8 @@ const App = () => {
                     max-height: 0;
                     overflow: hidden;
                     transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-                    padding-left: 0; /* Adjusted for better alignment with new dot positioning */
-                    padding-right: 0; /* Adjusted for better alignment with new dot positioning */
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
                     padding-top: 0;
                     padding-bottom: 0;
                 }
@@ -439,75 +358,12 @@ const App = () => {
                         max-height: 50vh;
                     }
                 }
-
-                /* Carousel specific styles for "main full, neighbors half" */
-                .project-carousel-track {
-                    /* Default for mobile/tablet: grid layout, items wrap */
-                    display: grid;
-                    grid-template-columns: 1fr; /* Single column by default */
-                    gap: 1.5rem; /* Gap between cards */
-                    white-space: normal; /* Allow text to wrap */
-                    transition: none; /* No transform transition on mobile/tablet */
-                }
-
-                @media (min-width: 640px) { /* Small screens (sm) and up */
-                    .project-carousel-track {
-                        grid-template-columns: repeat(2, 1fr); /* 2 columns on small tablets */
-                    }
-                }
-
-                @media (min-width: 768px) {
-                    .project-carousel-track {
-                        /* Revert to flex/carousel behavior on desktop */
-                        display: flex;
-                        white-space: nowrap; /* Prevent wrapping for carousel */
-                        gap: 0; /* Remove gap when using inline-block with padding */
-                        transition: transform 0.5s ease-in-out; /* Smooth transition for carousel */
-                    }
-                }
-
-                .project-carousel-item {
-                    width: 100%; /* Default to full width for grid items */
-                    flex-shrink: 0; /* Ensure items don't shrink in flex container */
-                    display: block; /* Default block display for grid items */
-                    vertical-align: top; /* Standard vertical alignment */
-                    padding: 0; /* No padding on item itself when in grid */
-                }
-                @media (min-width: 768px) {
-                    .project-carousel-item {
-                        /* On desktop, items are part of carousel track */
-                        width: calc(100% / 3); /* Each item takes 1/3 of the container width on MD+ */
-                        display: inline-block; /* Essential for nowrap and flex behavior */
-                        padding: 0 1rem; /* Add consistent horizontal spacing between items in carousel */
-                    }
-                }
-
-                .project-card-inner {
-                    display: flex;
-                    flex-direction: column;
-                    height: 100%;
-                    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0s;
-                    transform: scale(1); /* Default scale 1 for non-desktop */
-                    opacity: 1; /* Default opacity 1 for non-desktop */
-                    z-index: auto; /* Default z-index for non-desktop */
-                }
-                @media (min-width: 768px) {
-                    .project-card-inner {
-                        transform: scale(0.85); /* Smaller scale for non-active cards on desktop */
-                        opacity: 0.6; /* Lower opacity for non-active cards on desktop */
-                    }
-                    .project-card-inner.active {
-                        transform: scale(1.05); /* Slightly larger scale for active card on desktop */
-                        opacity: 1; /* Full opacity for active card on desktop */
-                        z-index: 10; /* Ensure active card is on top on desktop */
-                    }
-                }
                 `}
             </style>
             <header id="header" className={`${isDarkMode ? 'bg-stone-900/80' : 'bg-stone-50/80'} backdrop-blur-sm sticky top-0 z-50 shadow-sm`}>
                 <nav className="px-6 py-4 flex justify-between items-center w-full">
                     <div className="text-xl font-bold text-orange-600">
-                        Mohd Asri Omar
+                        Mohd Asri 😎
                     </div>
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-8 items-center">
@@ -632,75 +488,32 @@ const App = () => {
                     </div>
                 </section>
 
-                {/* Projects Section - Carousel */}
+                {/* Projects Section */}
                 <section id="projects" className="mb-16 md:mb-24">
                     <div className="max-w-7xl mx-auto">
                         <h2 className="text-3xl font-bold text-center text-orange-600 mb-4">My Projects</h2>
                         <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-10">
                             Here are some of the projects I've worked on, demonstrating my skills in front-end development and full-stack application building. Feel free to explore the live demos and source code.
                         </p>
-                        <div ref={carouselContainerRef} className={`relative w-full max-w-4xl mx-auto ${isDesktopView ? 'overflow-hidden py-8' : 'grid grid-cols-1 sm:grid-cols-2 gap-6'}`}>
-                            <div
-                                ref={carouselTrackRef}
-                                className={`project-carousel-track ${isDesktopView ? 'flex' : ''}`}
-                                style={isDesktopView ? { transform: `translateX(${translateXValue}px)` } : {}}
-                            >
-                                {projectData.map((project, index) => (
-                                    <div key={index} className={`project-carousel-item ${isDesktopView ? '' : 'sm:col-span-1'}`}>
-                                        <div className={`project-card-inner p-6 rounded-lg shadow-md ${isDarkMode ? 'bg-stone-800' : 'bg-white'} ${isDesktopView && index === currentProjectIndex ? 'active' : ''}`}>
-                                            <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-2 overflow-hidden text-ellipsis whitespace-normal">
-                                                {project.title}
-                                            </h3>
-                                            <p className="text-stone-700 dark:text-stone-300 text-sm flex-grow mb-4 overflow-hidden text-ellipsis whitespace-normal">
-                                                {project.description}
-                                            </p>
-                                            <div className="flex justify-start space-x-4 mt-auto">
-                                                {project.vercelLink && (
-                                                    <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
-                                                        <ExternalLink size={18} className="mr-1" /> Live Demo
-                                                    </a>
-                                                )}
-                                                {project.githubLink && (
-                                                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
-                                                        <Github size={18} className="mr-1" /> GitHub
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {projectData.map((project, index) => (
+                                <div key={index} className={`p-6 rounded-lg shadow-md flex flex-col ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
+                                    <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-2">{project.title}</h3>
+                                    <p className="text-stone-700 dark:text-stone-300 text-sm flex-grow mb-4">{project.description}</p>
+                                    <div className="flex justify-start space-x-4 mt-auto">
+                                        {project.vercelLink && (
+                                            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
+                                                <ExternalLink size={18} className="mr-1" /> Live Demo
+                                            </a>
+                                        )}
+                                        {project.githubLink && (
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
+                                                <Github size={18} className="mr-1" /> GitHub
+                                            </a>
+                                        )}
                                     </div>
-                                ))}
-                            </div>
-
-                            {/* Navigation Buttons (only for desktop view) */}
-                            {totalProjects > 1 && isDesktopView && (
-                                <>
-                                    <button
-                                        onClick={goToPrevProject}
-                                        className="absolute top-1/2 left-0 -translate-y-1/2 ml-2 bg-stone-700/50 hover:bg-stone-700 text-white p-2 rounded-full z-20 transition-colors"
-                                    >
-                                        <ChevronLeft size={24} />
-                                    </button>
-                                    <button
-                                        onClick={goToNextProject}
-                                        className="absolute top-1/2 right-0 -translate-y-1/2 mr-2 bg-stone-700/50 hover:bg-stone-700 text-white p-2 rounded-full z-20 transition-colors"
-                                    >
-                                        <ChevronRight size={24} />
-                                    </button>
-                                </>
-                            )}
-
-                            {/* Pagination Dots (only for desktop view) */}
-                            {totalProjects > 1 && isDesktopView && (
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-                                    {projectData.map((_, index) => (
-                                        <div
-                                            key={index}
-                                            onClick={() => setCurrentProjectIndex(index)}
-                                            className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${currentProjectIndex === index ? 'bg-orange-500' : 'bg-stone-400 hover:bg-stone-300'}`}
-                                        ></div>
-                                    ))}
                                 </div>
-                            )}
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -719,17 +532,17 @@ const App = () => {
                                 return (
                                     <div
                                         key={index}
-                                        className={`timeline-item relative mb-8`}
+                                        className={`timeline-item relative mb-8 flex items-start ${activeTimelineItem === index ? 'active' : ''}`}
                                     >
-                                        {/* Timeline Dot positioned relative to the card, not the entire flex item's height */}
-                                        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+                                        {/* Timeline Dot and small connecting line segment */}
+                                        <div className="absolute left-0 top-0 h-full flex flex-col items-center z-10 -translate-x-1/2">
                                             <div className="timeline-dot h-4 w-4 rounded-full bg-orange-500 flex items-center justify-center ring-4 ring-white dark:ring-stone-900">
                                                 <div className="h-2 w-2 rounded-full bg-white transition-transform"></div>
                                             </div>
                                         </div>
 
-                                        {/* Content Block shifted right to make space for the line/dot */}
-                                        <div className="ml-12 w-full">
+                                        {/* Content Block */}
+                                        <div className="ml-8 w-full"> {/* Content shifted by ml-8 to make space for the dot/line */}
                                             <div
                                                 className={`cursor-pointer p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}
                                                 onClick={() => toggleTimelineItem(index)}
@@ -738,8 +551,8 @@ const App = () => {
                                                 <h3 className="font-bold text-lg text-orange-600 dark:text-orange-400">{item.role}</h3>
                                                 <p className="text-md text-stone-700 dark:text-stone-200 font-medium">{item.company}</p>
                                             </div>
-                                            <div className={`timeline-item-content rounded-b-lg shadow-md ${isDarkMode ? 'bg-stone-800' : 'bg-white'} ${activeTimelineItem === index ? 'active' : ''}`}>
-                                                <ul className="list-disc list-inside text-stone-600 dark:text-stone-300 space-y-2 text-sm leading-relaxed">
+                                            <div className={`timeline-item-content rounded-b-lg shadow-md ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
+                                                <ul className="list-disc list-inside text-stone-600 dark:text-stone-300 space-y-2 text-sm">
                                                     {item.details.map((detail, detailIndex) => (
                                                         <li key={detailIndex}>{detail}</li>
                                                     ))}
@@ -780,7 +593,7 @@ const App = () => {
                     <h3 className="text-2xl font-bold mb-2">Let's Connect</h3>
                     <p className="mb-4">Feel free to reach out for opportunities or just to say hello.</p>
                     <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-block">mohdasriomar84@gmail.com</a>
-                    <p className="mt-6 text-sm text-stone-400">&copy; 2024 Mohd Asri Omar. All Rights Reserved.</p>
+                    <p className="mt-6 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
