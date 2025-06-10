@@ -64,6 +64,7 @@ const App = () => {
             { name: "Generative AI", icon: <Sparkles size={40} /> },
             { name: "LLM", icon: <Bot size={40} /> },
             { name: "Sentiment Analysis", icon: <Smile size={40} /> },
+             { name: "LM Studio", icon: <Smile size={40} /> },
         ],
         soft: [
             { name: "Leadership", icon: <Users size={40} /> },
