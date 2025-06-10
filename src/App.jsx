@@ -18,11 +18,12 @@ const App = () => {
             { name: "Express.js", icon: <Rocket size={40} /> },
             { name: "PostgreSQL", icon: <Database size={40} /> },
             { name: "MongoDB", icon: <Database size={40} /> },
+            { name: "SQL", icon: <Database size={40} /> },
         ],
         scripting: [
             { name: "JavaScript", icon: <Code size={40} /> },
             { name: "Python", icon: <Code size={40} /> },
-            { name: "SQL", icon: <Database size={40} /> },
+            
         ],
         emerging: [
             { name: "Generative AI", icon: <Sparkles size={40} /> },
@@ -57,7 +58,7 @@ const App = () => {
             details: [
                 "Provided comprehensive technical support for BBISv2, ensuring seamless software operation and a positive user experience.",
                 "Collaborated with developers to implement front-end updates, enhancements, and configuration changes within BBISv2, significantly improving system usability.",
-                "Diagnosed and resolved complex system issues, including front-end related bugs and performance bottlenecks.",
+                "Diagnosed and resolved complex system issues, including front-end and back-end related bugs and performance bottlenecks.",
                 "Ensured system reliability and compliance with data management and security protocols."
             ]
         },
@@ -468,13 +469,13 @@ const App = () => {
                         </p>
                         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                             <div className="bg-white p-6 rounded-lg shadow-md w-full md:w-auto text-center">
-                                <h3 className="text-xl font-bold text-orange-600">Master of Computer Science</h3>
+                                <h3 className="text-xl font-bold text-orange-600">Master of Information Technology (Informatics Management)</h3>
                                 <p className="text-stone-700">Universiti Sultan Zainal Abidin</p>
                                 <p className="text-stone-500 text-sm">Graduated 2019</p>
                             </div>
                             <div className="bg-white p-6 rounded-lg shadow-md w-full md:w-auto text-center">
                                 <h3 className="text-xl font-bold text-orange-600">Bachelor of Information Technology</h3>
-                                <p className="text-stone-700">University Malaysia Terengganu</p>
+                                <p className="text-stone-700">University Malaysia Terengganu (Software Engineering)</p>
                                 <p className="text-stone-500 text-sm">Graduated 2006</p>
                             </div>
                         </div>
@@ -487,7 +488,7 @@ const App = () => {
                     <h3 className="text-2xl font-bold mb-2">Let's Connect</h3>
                     <p className="mb-4">Feel free to reach out for opportunities or just to say hello.</p>
                     <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-block">mohdasriomar84@gmail.com</a>
-                    <p className="mt-6 text-sm text-stone-400">&copy; 2024 Mohd Asri Omar. All Rights Reserved.</p>
+                    <p className="mt-6 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
