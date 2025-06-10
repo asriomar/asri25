@@ -594,7 +594,8 @@ const App = () => {
                     <h3 className="text-2xl font-bold mb-2">Let's Connect</h3>
                     <p className="mb-4">Feel free to reach out for opportunities or just to say hello.</p>
                     <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-block">mohdasriomar84@gmail.com</a>
-                    <p className="mt-6 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
+                    <p className="mt-6 text-sm text-stone-400">Build using React and Tailwind CSS.</p>
+                    <p className="mt-4 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
