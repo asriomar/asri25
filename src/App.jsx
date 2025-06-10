@@ -363,7 +363,7 @@ const App = () => {
             <header id="header" className={`${isDarkMode ? 'bg-stone-900/80' : 'bg-stone-50/80'} backdrop-blur-sm sticky top-0 z-50 shadow-sm`}>
                 <nav className="px-6 py-4 flex justify-between items-center w-full">
                     <div className="text-xl font-bold text-orange-600">
-                        Mohd Asri Omar
+                        Mohd Asri 😎
                     </div>
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-8 items-center">
