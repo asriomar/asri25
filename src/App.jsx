@@ -68,6 +68,7 @@ const App = () => {
             { name: "Sentiment Analysis", icon: <Smile size={40} /> },
              { name: "LM Studio", icon: <Smile size={40} /> },
             { name: "Vibe Coding", icon: <Wind size={40} /> },
+            { name: "Prompt Engineering", icon: <Wind size={40} /> },
         ],
         soft: [
             { name: "Leadership", icon: <Users size={40} /> },
@@ -75,6 +76,8 @@ const App = () => {
             { name: "Problem Solving", icon: <Lightbulb size={40} /> },
             { name: "Customer Service", icon: <Headphones size={40} /> },
             { name: "Technical Support", icon: <Settings size={40} /> },
+            { name: "Helpdesk", icon: <Settings size={40} /> },
+            { name: "Troubleshooting", icon: <Settings size={40} /> },
         ]
     };
 
