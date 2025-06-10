@@ -172,6 +172,10 @@ const App = () => {
     const [activeTimelineItem, setActiveTimelineItem] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
 
+    // Refs for detecting clicks outside the menu
+    const menuRef = useRef();
+    const menuButtonRef = useRef();
+
     useEffect(() => {
         if (chartInstance.current) {
             chartInstance.current.destroy();
@@ -274,6 +278,28 @@ const App = () => {
         });
     }, [isDarkMode, skillsData]); // Re-run effect when isDarkMode or skillsData changes
 
+    // Effect to handle clicks outside the mobile menu
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            // Close menu if it's open AND click is outside the menu div AND outside the menu button
+            if (
+                isMenuOpen &&
+                menuRef.current && !menuRef.current.contains(event.target) &&
+                menuButtonRef.current && !menuButtonRef.current.contains(event.target)
+            ) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        // Attach event listener
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Clean up event listener on component unmount
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isMenuOpen]); // Re-run effect if isMenuOpen changes
+
     const getSkillsToShow = () => {
         return activeCategory === 'all'
             ? Object.values(skillsData).flat()
@@ -354,7 +380,7 @@ const App = () => {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-stone-600 dark:text-stone-300 focus:outline-none">
+                        <button ref={menuButtonRef} onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-stone-600 dark:text-stone-300 focus:outline-none">
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                         <button onClick={toggleTheme} className="p-2 rounded-full text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors ml-2">
@@ -364,7 +390,7 @@ const App = () => {
                 </nav>
 
                 {/* Mobile Menu Overlay */}
-                <div className={`md:hidden absolute top-0 left-0 w-full ${isDarkMode ? 'bg-stone-900/95' : 'bg-stone-50/95'} backdrop-blur-md z-40 transform ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'} transition-transform duration-300 ease-in-out`}>
+                <div ref={menuRef} className={`md:hidden absolute top-0 left-0 w-full ${isDarkMode ? 'bg-stone-900/95' : 'bg-stone-50/95'} backdrop-blur-md z-40 transform ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'} transition-transform duration-300 ease-in-out`}>
                     <div className="flex flex-col items-center py-8 space-y-6">
                         <a href="#summary" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Summary</a>
                         <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-stone-800 text-lg hover:text-orange-600 transition-colors dark:text-stone-300 dark:hover:text-orange-400">Skills</a>
@@ -545,12 +571,12 @@ const App = () => {
                         </p>
                         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Computer Science</h3>
+                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Master of Information Technology (Informatics Management)</h3>
                                 <p className="text-stone-700 dark:text-stone-200">Universiti Sultan Zainal Abidin</p>
                                 <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2019</p>
                             </div>
                             <div className={`p-6 rounded-lg shadow-md w-full md:w-auto text-center ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology</h3>
+                                <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400">Bachelor of Information Technology (Software Engineering)</h3>
                                 <p className="text-stone-700 dark:text-stone-200">University Malaysia Terengganu</p>
                                 <p className="text-stone-500 dark:text-stone-400 text-sm">Graduated 2006</p>
                             </div>
@@ -564,7 +590,7 @@ const App = () => {
                     <h3 className="text-2xl font-bold mb-2">Let's Connect</h3>
                     <p className="mb-4">Feel free to reach out for opportunities or just to say hello.</p>
                     <a href="mailto:mohdasriomar84@gmail.com" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-block">mohdasriomar84@gmail.com</a>
-                    <p className="mt-6 text-sm text-stone-400">&copy; 2024 Mohd Asri Omar. All Rights Reserved.</p>
+                    <p className="mt-6 text-sm text-stone-400">&copy; 2025 Mohd Asri Omar. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>
