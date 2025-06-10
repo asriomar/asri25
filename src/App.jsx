@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Chart from 'chart.js/auto';
-import { Atom, Brain, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github, Sun, Moon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Atom, Brain, SquareCode, FileText, Palette, Wind, Layout, Smartphone, Server, Rocket, Database, Code, Sparkles, Bot, Smile, Users, MessageSquare, Lightbulb, Headphones, Settings, Menu, X, ExternalLink, Github, Sun, Moon } from 'lucide-react';
 
 // 1. Create Theme Context
 const ThemeContext = createContext();
@@ -172,10 +172,6 @@ const App = () => {
     const [activeTimelineItem, setActiveTimelineItem] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
 
-    // Carousel state
-    const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-    const totalProjects = projectData.length;
-
     // Refs for detecting clicks outside the menu
     const menuRef = useRef();
     const menuButtonRef = useRef();
@@ -304,17 +300,6 @@ const App = () => {
         };
     }, [isMenuOpen]); // Re-run effect if isMenuOpen changes
 
-    // Auto-play for carousel
-    useEffect(() => {
-        if (totalProjects <= 1) return; // No need to auto-play if only one project
-
-        const interval = setInterval(() => {
-            setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
-        }, 3000); // Change slide every 3 seconds
-
-        return () => clearInterval(interval); // Cleanup on component unmount or re-render
-    }, [totalProjects]); // Re-run if totalProjects changes
-
     const getSkillsToShow = () => {
         return activeCategory === 'all'
             ? Object.values(skillsData).flat()
@@ -327,15 +312,6 @@ const App = () => {
 
     const toggleTimelineItem = (index) => {
         setActiveTimelineItem(activeTimelineItem === index ? null : index);
-    };
-
-    // Carousel navigation functions
-    const goToNextProject = () => {
-        setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % totalProjects);
-    };
-
-    const goToPrevProject = () => {
-        setCurrentProjectIndex((prevIndex) => (prevIndex - 1 + totalProjects) % totalProjects);
     };
 
     return (
@@ -387,7 +363,7 @@ const App = () => {
             <header id="header" className={`${isDarkMode ? 'bg-stone-900/80' : 'bg-stone-50/80'} backdrop-blur-sm sticky top-0 z-50 shadow-sm`}>
                 <nav className="px-6 py-4 flex justify-between items-center w-full">
                     <div className="text-xl font-bold text-orange-600">
-                        Mohd Asri 😎🚀🌏✌️
+                        Mohd Asri 😎
                     </div>
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-8 items-center">
@@ -512,70 +488,32 @@ const App = () => {
                     </div>
                 </section>
 
-                {/* Projects Section - Carousel */}
+                {/* Projects Section */}
                 <section id="projects" className="mb-16 md:mb-24">
                     <div className="max-w-7xl mx-auto">
                         <h2 className="text-3xl font-bold text-center text-orange-600 mb-4">My Projects</h2>
                         <p className="text-lg text-stone-600 dark:text-stone-300 text-center max-w-2xl mx-auto mb-10">
                             Here are some of the projects I've worked on, demonstrating my skills in front-end development and full-stack application building. Feel free to explore the live demos and source code.
                         </p>
-                        <div className="relative overflow-hidden w-full max-w-4xl mx-auto">
-                            <div
-                                className="flex transition-transform duration-500 ease-in-out"
-                                style={{ transform: `translateX(-${currentProjectIndex * 100}%)` }}
-                            >
-                                {projectData.map((project, index) => (
-                                    <div key={index} className="w-full flex-shrink-0 px-4">
-                                        <div className={`p-6 rounded-lg shadow-md flex flex-col h-full ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
-                                            <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-2">{project.title}</h3>
-                                            <p className="text-stone-700 dark:text-stone-300 text-sm flex-grow mb-4">{project.description}</p>
-                                            <div className="flex justify-start space-x-4 mt-auto">
-                                                {project.vercelLink && (
-                                                    <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
-                                                        <ExternalLink size={18} className="mr-1" /> Live Demo
-                                                    </a>
-                                                )}
-                                                {project.githubLink && (
-                                                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
-                                                        <Github size={18} className="mr-1" /> GitHub
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {projectData.map((project, index) => (
+                                <div key={index} className={`p-6 rounded-lg shadow-md flex flex-col ${isDarkMode ? 'bg-stone-800' : 'bg-white'}`}>
+                                    <h3 className="text-xl font-bold text-orange-600 dark:text-orange-400 mb-2">{project.title}</h3>
+                                    <p className="text-stone-700 dark:text-stone-300 text-sm flex-grow mb-4">{project.description}</p>
+                                    <div className="flex justify-start space-x-4 mt-auto">
+                                        {project.vercelLink && (
+                                            <a href={project.vercelLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
+                                                <ExternalLink size={18} className="mr-1" /> Live Demo
+                                            </a>
+                                        )}
+                                        {project.githubLink && (
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-stone-600 hover:text-orange-600 transition-colors font-medium dark:text-stone-400 dark:hover:text-orange-400">
+                                                <Github size={18} className="mr-1" /> GitHub
+                                            </a>
+                                        )}
                                     </div>
-                                ))}
-                            </div>
-
-                            {/* Navigation Buttons */}
-                            {totalProjects > 1 && ( // Only show buttons if more than one project
-                                <>
-                                    <button
-                                        onClick={goToPrevProject}
-                                        className="absolute top-1/2 left-0 -translate-y-1/2 ml-2 bg-stone-700/50 hover:bg-stone-700 text-white p-2 rounded-full z-10 transition-colors"
-                                    >
-                                        <ChevronLeft size={24} />
-                                    </button>
-                                    <button
-                                        onClick={goToNextProject}
-                                        className="absolute top-1/2 right-0 -translate-y-1/2 mr-2 bg-stone-700/50 hover:bg-stone-700 text-white p-2 rounded-full z-10 transition-colors"
-                                    >
-                                        <ChevronRight size={24} />
-                                    </button>
-                                </>
-                            )}
-
-                            {/* Pagination Dots */}
-                            {totalProjects > 1 && ( // Only show dots if more than one project
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                                    {projectData.map((_, index) => (
-                                        <div
-                                            key={index}
-                                            onClick={() => setCurrentProjectIndex(index)}
-                                            className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${currentProjectIndex === index ? 'bg-orange-500' : 'bg-stone-400 hover:bg-stone-300'}`}
-                                        ></div>
-                                    ))}
                                 </div>
-                            )}
+                            ))}
                         </div>
                     </div>
                 </section>
