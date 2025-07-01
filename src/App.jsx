@@ -404,11 +404,16 @@ const App = () => {
 
             <main className="px-6 py-8 md:py-16 w-full">
                 <section id="summary" className="mb-16 md:mb-24 text-center">
-                    <div className="max-w-7xl mx-auto">
+                      <div className="max-w-7xl mx-auto">
                         <h1 className="text-4xl md:text-5xl font-bold text-orange-600 mb-4">Aspiring Front-End Developer</h1>
-                        <p className="text-lg md:text-xl text-stone-600 dark:text-stone-300 max-w-3xl mx-auto">
-                            Highly motivated IT professional with a robust foundation in software development and system operations, actively transitioning into a dedicated Front-End Developer role. Passionate about crafting intuitive, responsive, and visually appealing user interfaces.
+                        <p className="text-sm md:text-xl text-stone-600 dark:text-stone-300 max-w-3xl mx-auto">
+                            <p className='py-4 text-2xl font-bold'>🌟 Professional Summary</p>
+                            I’m a passionate Front-End Developer transitioning from a Senior Application Support (L3) background with 10+ years in IT operations and education. I'm passionate about building with <span className='font-bold'>React, Tailwind CSS, Bootstrap, and Angular</span>, with a growing focus on AI-powered web development.
                         </p>
+                        <p className="text-sm md:text-xl text-stone-600 dark:text-stone-300 max-w-3xl mx-auto py-4">
+                            I actively build projects while upskilling through online courses and experimenting with tools like LM Studio, LLMs, and prompt engineering. With a <span className='underline underline-offset-4'>Master’s in IT and a thesis in Sentiment Analysis</span>, I bring a strong foundation in both UI development and data-driven thinking. I'm excited to create intuitive, scalable, and future-ready web experiences.
+                        </p>
+
                     </div>
                 </section>
 
